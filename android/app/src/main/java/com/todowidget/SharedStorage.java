@@ -12,7 +12,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SharedStorage extends ReactContextBaseJavaModule {
     ReactApplicationContext context;
@@ -40,4 +45,11 @@ public class SharedStorage extends ReactContextBaseJavaModule {
         getCurrentActivity().getApplicationContext().sendBroadcast(intent);
 
     }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public String get() {
+        String appString = context.getSharedPreferences("DATA", Context.MODE_PRIVATE).getString("appData", "{}");
+        return appString;
+    }
+
 }
