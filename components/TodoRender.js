@@ -1,11 +1,16 @@
-import { View,Text } from "react-native"
+import { View,Text, Button } from "react-native"
 
-const TodoRender = ({cont}) => {
+const TodoRender = ({cont,index,removeTodo,reorderTodo}) => {
+    
     return(
-         <View>
+         <View className="flex-row items-center justify-evenly">
              <Text>
                 {cont}
             </Text>  
+             <Button title="zmazat!" onPress={()=>removeTodo(index)}>
+            </Button> 
+            <Button title="^" onPress={()=>reorderTodo(index,index-1)}></Button> 
+            <Button title="\/" onPress={()=>reorderTodo(index,index+1)}></Button> 
         </View> 
     )
 }

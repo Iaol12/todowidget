@@ -26,26 +26,46 @@ const App = () => {
         console.error('Error retrieving data from native side:', error);
       }
     };
-  
+
     fetchDataFromNative();
   }, []);
+
+  // ked sa zmenia tak updatni
+  useEffect(() => {
+    console.log('Todos have changed!');
+    handleSubmit();
+  }, [todos]);
   
   const handleSubmit = async () => {
     const data = {
       stringArray: todos,
     };
-    console.log(data);
-    console.log(todos);
     SharedStorage.set(JSON.stringify(data));
   };
 
+  const removeTodo = (index) => {
+    const updatedTodos = [...todos.slice(0, index), ...todos.slice(index + 1)];
+    setTodos(updatedTodos);
+  };
   const AddTodo = () => {
     setTodos((prevTodos) => [...prevTodos, text]);
-    setText(''); // Clear the text input after adding todo
+    setText(''); 
+  };
+  const reorderTodo = (currentIndex, targetIndex) => {
+    if (currentIndex < 0 || currentIndex >= todos.length || targetIndex < 0 || targetIndex >= todos.length) {
+      return;
+    }
+
+    const updatedTodos = [...todos];
+    const [removedTodo] = updatedTodos.splice(currentIndex, 1);
+    updatedTodos.splice(targetIndex, 0, removedTodo);
+
+    setTodos(updatedTodos);
+    
   };
 
   return (
-    <View className="mt-24 pt-24">
+    <View className="mt-24 pt-24 flex-1">
       <TextInput
         style={styles.input}
         onChangeText={(newText) => setText(newText)}
@@ -54,11 +74,10 @@ const App = () => {
         placeholder="Enter the text to display..."
       />
       <Button onPress={AddTodo} title="Click This NOW!" />
-      <Button onPress={handleSubmit} title="Submit!" />
       <FlatList
           className="flex-grow-0"
             data={todos}
-            renderItem={({ item }) => <TodoRender cont={item}/>}
+            renderItem={({ item, index }) => <TodoRender cont={item} index={index} removeTodo={removeTodo} reorderTodo={reorderTodo} />}
           />
     </View>
   
