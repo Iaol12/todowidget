@@ -6,15 +6,26 @@
     android:theme="@style/AppTheme.AppWidgetContainer">
 
     <TextView
-        android:id="@+id/appwidget_text"
-        style="@style/Widget.Todowidget.AppWidget.InnerView"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/my_todos" />
+
+    <TextView
+        android:id="@+id/appwidget_text"
+        style="@style/Widget.Todowidget.AppWidget.InnerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/redbox_top_border_background"
         android:contentDescription="@string/appwidget_text"
+        android:padding="@dimen/moj_pading"
         android:text="@string/appwidget_text"
-        android:textSize="24sp"
+        android:textAppearance="@style/AppTheme"
+        android:textColor="@color/pismenka"
+        android:textSize="14sp"
         android:textStyle="bold|italic" />
 </RelativeLayout>

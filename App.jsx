@@ -65,20 +65,28 @@ const App = () => {
   };
 
   return (
-    <View className="mt-24 pt-24 flex-1">
-      <TextInput
-        style={styles.input}
-        onChangeText={(newText) => setText(newText)}
-        value={text}
-        returnKeyType="send"
-        placeholder="Enter the text to display..."
-      />
-      <Button onPress={AddTodo} title="Click This NOW!" />
+    <View className="mt-10 flex-1 bg-slate-800">
+    
+     <View className="flex-1"> 
       <FlatList
-          className="flex-grow-0"
-            data={todos}
-            renderItem={({ item, index }) => <TodoRender cont={item} index={index} removeTodo={removeTodo} reorderTodo={reorderTodo} />}
-          />
+            className="flex-grow-0"
+              data={todos}
+              renderItem={({ item, index }) => <TodoRender cont={item} index={index} removeTodo={removeTodo} reorderTodo={reorderTodo} />}
+            />
+    </View> 
+    
+    <View className="items-center justify-evenly bg-slate-900 h-2/6" > 
+      <TextInput 
+          style={styles.input}
+          onChangeText={(newText) => setText(newText)}
+          value={text}
+          returnKeyType="send"
+          placeholder="Enter the text to display..."
+      />
+      <Button onPress={AddTodo} title="Pridať!" />
+    </View> 
+      
+      
     </View>
   
   );

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">todowidget</string>
+    <string name="appwidget_text">príklad</string>
+    <string name="add_widget">pridať miniaplikáciu</string>
+    <string name="app_widget_description">Miniaplikácia na zapisovanie a plnenie vecí</string>
+    <string name="my_todos">Čo treba spraviť:</string>
+</resources>
